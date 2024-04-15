@@ -2,7 +2,7 @@
 
 ```bash
 # 进入项目目录
-cd fzshuai-blog-ui
+cd fzshuai-weblog-ui
 
 # 安装依赖
 npm install

@@ -1,7 +1,7 @@
 {
-  "name": "Fzshuai-Blog",
+  "name": "Fzshuai-Weblog",
   "version": "2.1.0",
-  "description": "Fzshuai-Blog 博客前台系统",
+  "description": "Fzshuai-Weblog 前台 UI 工程",
   "author": "fzshuai",
   "license": "MIT",
   "scripts": {
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/fu-zhanshuai/fzshuai-blog-ui"
+    "url": "https://gitee.com/fu-zhanshuai/fzshuai-weblog-ui"
   },
   "dependencies": {
     "animate.css": "3.7.2",

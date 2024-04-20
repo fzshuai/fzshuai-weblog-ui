@@ -1,20 +1,29 @@
 <template>
-  <v-dialog v-model="registerFlag" :fullscreen="isMobile" max-width="460">
+  <v-dialog v-model="registerFlag" :fullscreen="isMobile" max-width="500">
     <v-card class="login-container" style="border-radius:4px">
       <v-icon class="float-right" @click="registerFlag = false">
         mdi-close
       </v-icon>
       <div class="login-wrapper">
-        <!-- 用户名 -->
+        <!-- 账号 -->
         <v-text-field
           v-model="username"
-          label="邮箱号"
-          placeholder="请输入您的邮箱号"
+          label="账号"
+          placeholder="请输入您的账号"
+          clearable
+          @keyup.enter="register"
+        />
+        <!-- 邮箱号 -->
+        <v-text-field
+          v-model="email"
+          class="mt-4"
+          label="邮箱"
+          placeholder="请输入您的邮箱"
           clearable
           @keyup.enter="register"
         />
         <!-- 验证码 -->
-        <div class="mt-7 send-wrapper">
+        <div class="mt-4 send-wrapper">
           <v-text-field
             maxlength="6"
             v-model="code"
@@ -29,7 +38,7 @@
         <!-- 密码 -->
         <v-text-field
           v-model="password"
-          class="mt-7"
+          class="mt-4"
           label="密码"
           placeholder="请输入您的密码"
           @keyup.enter="register"
@@ -39,7 +48,7 @@
         />
         <!-- 注册按钮 -->
         <v-btn
-          class="mt-7"
+          class="mt-4"
           block
           color="red"
           style="color:#fff"
@@ -48,7 +57,7 @@
           注册
         </v-btn>
         <!-- 登录 -->
-        <div class="mt-10 login-tip">
+        <div class="mt-7 login-tip">
           已有账号？<span @click="openLogin">登录</span>
         </div>
       </div>
@@ -63,6 +72,7 @@ export default {
       username: "",
       code: "",
       password: "",
+      email: "",
       flag: true,
       codeMsg: "发送",
       time: 60,
@@ -76,28 +86,19 @@ export default {
     },
     sendCode() {
       const that = this;
-      // eslint-disable-next-line no-undef
-      var captcha = new TencentCaptcha(this.config.TENCENT_CAPTCHA, function(
-        res
-      ) {
-        if (res.ret === 0) {
-          //发送邮件
-          that.countDown();
-          that.axios
-            .get("/api/users/code", {
-              params: { username: that.username }
-            })
-            .then(({ data }) => {
-              if (data.flag) {
-                that.$toast({ type: "success", message: "发送成功" });
-              } else {
-                that.$toast({ type: "error", message: data.message });
-              }
-            });
-        }
-      });
-      // 显示验证码
-      captcha.show();
+      // 发送邮件
+      that.countDown();
+      that.axios
+        .get("/api/blog/register/code", {
+          params: { email: that.email }
+        })
+        .then(({ data }) => {
+          if (data.code == 200) {
+            that.$toast({ type: "success", message: "发送成功" });
+          } else {
+            that.$toast({ type: "error", message: data.message });
+          }
+        });
     },
     countDown() {
       this.flag = true;
@@ -114,7 +115,7 @@ export default {
     },
     register() {
       var reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-      if (!reg.test(this.username)) {
+      if (!reg.test(this.email)) {
         this.$toast({ type: "error", message: "邮箱格式不正确" });
         return false;
       }
@@ -129,14 +130,15 @@ export default {
       const user = {
         username: this.username,
         password: this.password,
+        email: this.email,
         code: this.code
       };
-      this.axios.post("/api/register", user).then(({ data }) => {
-        if (data.flag) {
+      this.axios.post("/api/blog/register", user).then(({ data }) => {
+        if (data.code == 200) {
           let param = new URLSearchParams();
           param.append("username", user.username);
           param.append("password", user.password);
-          this.axios.post("/api/login", param).then(({ data }) => {
+          this.axios.post("/api/blog/login", param).then(({ data }) => {
             this.username = "";
             this.password = "";
             this.$store.commit("login", data.data);
@@ -144,7 +146,7 @@ export default {
           });
           this.$toast({ type: "success", message: "登录成功" });
         } else {
-          this.$toast({ type: "error", message: data.message });
+          this.$toast({ type: "error", message: data.msg });
         }
       });
     }
@@ -167,7 +169,7 @@ export default {
     }
   },
   watch: {
-    username(value) {
+    email(value) {
       var reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
       if (reg.test(value)) {
         this.flag = false;

@@ -91,18 +91,20 @@
         <div class="menus-item">
           <a
             class="menu-btn"
-            v-if="!this.$store.state.avatar"
+            v-if="!this.$store.state.avatar && !this.$store.state.nickname"
             @click="openLogin"
           >
             <i class="iconfont icondenglu" /> 登录
           </a>
           <template v-else>
-            <img
-              class="user-avatar"
-              :src="this.$store.state.avatar"
-              height="30"
-              width="30"
-            />
+            <div class="user-info-wrapper">
+              <v-avatar size="36" class="user-avatar">
+                <img :src="this.$store.state.avatar" />
+              </v-avatar>
+              <div class="user-nickname">
+                {{ this.$store.state.nickname }}
+              </div>
+            </div>
             <ul class="menus-submenu">
               <li>
                 <router-link to="/user">
@@ -158,8 +160,8 @@ export default {
       if (this.$route.path == "/user") {
         this.$router.go(-1);
       }
-      this.axios.get("/api/logout").then(({ data }) => {
-        if (data.flag) {
+      this.axios.get("/api/blog/logout").then(({ data }) => {
+        if (data.code == 200) {
           this.$store.commit("logout");
           this.$toast({ type: "success", message: "注销成功" });
         } else {
@@ -260,9 +262,20 @@ ul {
   content: "";
   transition: all 0.3s ease-in-out;
 }
+.user-info-wrapper {
+  width: 100%;
+  display: flex;
+}
 .user-avatar {
   cursor: pointer;
   border-radius: 50%;
+  transition: all 0.5s;
+}
+.user-nickname {
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  align-items: center;
 }
 .menus-item:hover .menus-submenu {
   display: block;

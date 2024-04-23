@@ -89,7 +89,7 @@ export default {
       // 发送邮件
       that.countDown();
       that.axios
-        .get("/api/blog/register/code", {
+        .get("/api/blogRegister/code", {
           params: { email: that.email }
         })
         .then(({ data }) => {
@@ -133,12 +133,12 @@ export default {
         email: this.email,
         code: this.code
       };
-      this.axios.post("/api/blog/register", user).then(({ data }) => {
+      this.axios.post("/api/blogRegister", user).then(({ data }) => {
         if (data.code == 200) {
           let param = new URLSearchParams();
           param.append("username", user.username);
           param.append("password", user.password);
-          this.axios.post("/api/blog/login", param).then(({ data }) => {
+          this.axios.post("/api/blogLogin", param).then(({ data }) => {
             this.username = "";
             this.password = "";
             this.$store.commit("login", data.data);

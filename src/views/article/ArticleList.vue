@@ -6,7 +6,12 @@
     </div>
     <div class="article-list-wrapper">
       <v-row>
-        <v-col md="4" cols="12" v-for="item of articleList" :key="item.articleId">
+        <v-col
+          md="4"
+          cols="12"
+          v-for="item of articleList"
+          :key="item.articleId"
+        >
           <!-- 文章 -->
           <v-card class="animated zoomIn article-item-card">
             <div class="article-item-cover">
@@ -47,7 +52,7 @@
               <router-link
                 :to="'/tags/' + tag.tagId"
                 class="tag-btn"
-                v-for="tag of item.tagDTOList"
+                v-for="tag of item.tagDtoList"
                 :key="tag.tagId"
               >
                 {{ tag.tagName }}
@@ -99,9 +104,9 @@ export default {
             this.name = data.data.name;
             document.title = this.title + " - " + this.name;
           }
-          if (data.data.articlePreviewDTOList.length) {
+          if (data.data.articlePreviewDtoList.length) {
             this.current++;
-            this.articleList.push(...data.data.articlePreviewDTOList);
+            this.articleList.push(...data.data.articlePreviewDtoList);
             $state.loaded();
           } else {
             $state.complete();
@@ -175,9 +180,11 @@ export default {
 }
 .tag-wrapper {
   padding: 10px 15px 10px 18px;
+  font-size: 15px;
 }
 .tag-wrapper a {
-  color: #fff !important;
+  /*color: #fff !important;*/
+  color: #e21414 !important;
 }
 .tag-btn {
   display: inline-block;

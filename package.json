@@ -87,7 +87,8 @@
       "no-unused-vars": "off",
       "no-console": "off",
       "no-irregular-whitespace": "off",
-      "no-debugger": "off"
+      "no-debugger": "off",
+      "vue/multi-word-component-names": "off"
     }
   },
   "browserslist": [

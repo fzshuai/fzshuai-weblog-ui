@@ -98,7 +98,7 @@
                 style="display:inline-block"
                 :to="'/tags/' + tag.tagId"
                 class="mr-1"
-                v-for="tag of item.tagDTOList"
+                v-for="tag of item.tagDtoList"
                 :key="tag.tagId"
               >
                 <v-icon size="14">mdi-tag-multiple</v-icon>{{ tag.tagName }}

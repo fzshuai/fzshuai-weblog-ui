@@ -234,7 +234,10 @@
                 v-for="item of article.newestArticleList"
                 :key="item.articleId"
               >
-                <router-link :to="'/articles/' + item.articleId" class="content-cover">
+                <router-link
+                  :to="'/articles/' + item.articleId"
+                  class="content-cover"
+                >
                   <img :src="item.articleCoverUrl" />
                 </router-link>
                 <div class="content">
@@ -295,66 +298,70 @@ export default {
       commentCount: 0,
       form: {
         articleId: null,
-        userid : this.$store.state.userId
-      },
+        userid: this.$store.state.userId
+      }
     };
   },
   methods: {
     getArticle() {
       const that = this;
       // 查询文章
-      this.axios.get("/api/blog/article" + this.$route.path).then(({ data }) => {
-        // 判断响应是否正确
-        if (data.code!=200){
-          this.$toast({ type: "error", message: data.msg });
-          this.$router.push('/')
-        }
-        document.title = data.data.articleTitle;
-        // 将markdown转换为Html
-        this.markdownToHtml(data.data);
-        this.$nextTick(() => {
-          // 统计文章字数
-          this.wordNum = this.deleteHTMLTag(this.article.articleContent).length;
-          // 计算阅读时间
-          this.readTime = Math.round(this.wordNum / 400) + "分钟";
-          // 添加代码复制功能
-          this.clipboard = new Clipboard(".copy-btn");
-          this.clipboard.on("success", () => {
-            this.$toast({ type: "success", message: "复制成功" });
-          });
-          // 添加文章生成目录功能
-          let nodes = this.$refs.article.children;
-          if (nodes.length) {
-            for (let i = 0; i < nodes.length; i++) {
-              let node = nodes[i];
-              let reg = /^H[1-4]{1}$/;
-              if (reg.exec(node.tagName)) {
-                node.id = i;
+      this.axios
+        .get("/api/blog/article" + this.$route.path)
+        .then(({ data }) => {
+          // 判断响应是否正确
+          if (data.code != 200) {
+            this.$toast({ type: "error", message: data.msg });
+            this.$router.push("/");
+          }
+          document.title = data.data.articleTitle;
+          // 将markdown转换为Html
+          this.markdownToHtml(data.data);
+          this.$nextTick(() => {
+            // 统计文章字数
+            this.wordNum = this.deleteHTMLTag(
+              this.article.articleContent
+            ).length;
+            // 计算阅读时间
+            this.readTime = Math.round(this.wordNum / 400) + "分钟";
+            // 添加代码复制功能
+            this.clipboard = new Clipboard(".copy-btn");
+            this.clipboard.on("success", () => {
+              this.$toast({ type: "success", message: "复制成功" });
+            });
+            // 添加文章生成目录功能
+            let nodes = this.$refs.article.children;
+            if (nodes.length) {
+              for (let i = 0; i < nodes.length; i++) {
+                let node = nodes[i];
+                let reg = /^H[1-4]{1}$/;
+                if (reg.exec(node.tagName)) {
+                  node.id = i;
+                }
               }
             }
-          }
-          tocbot.init({
-            // 要把目录添加元素位置，支持选择器
-            tocSelector: "#toc",
-            // 获取html的元素
-            contentSelector: ".article-content",
-            // 要显示的id的目录
-            headingSelector: "h1, h2, h3",
-            hasInnerContainers: true,
-            onClick: function(e) {
-              e.preventDefault();
+            tocbot.init({
+              // 要把目录添加元素位置，支持选择器
+              tocSelector: "#toc",
+              // 获取html的元素
+              contentSelector: ".article-content",
+              // 要显示的id的目录
+              headingSelector: "h1, h2, h3",
+              hasInnerContainers: true,
+              onClick: function(e) {
+                e.preventDefault();
+              }
+            });
+            // 添加图片预览功能
+            const imgList = this.$refs.article.getElementsByTagName("img");
+            for (var i = 0; i < imgList.length; i++) {
+              this.imgList.push(imgList[i].src);
+              imgList[i].addEventListener("click", function(e) {
+                that.previewImg(e.target.currentSrc);
+              });
             }
           });
-          // 添加图片预览功能
-          const imgList = this.$refs.article.getElementsByTagName("img");
-          for (var i = 0; i < imgList.length; i++) {
-            this.imgList.push(imgList[i].src);
-            imgList[i].addEventListener("click", function(e) {
-              that.previewImg(e.target.currentSrc);
-            });
-          }
         });
-      });
     },
     like() {
       // 判断登录
@@ -365,12 +372,17 @@ export default {
       this.form.articleId = this.$route.path.toString().split("/")[2];
       // 发送请求
       this.axios
-        .post("/api/blog/article/articles/" + this.article.articleId + "/like" ,this.form)
+        .post(
+          "/api/blog/article/articles/" + this.article.articleId + "/like",
+          this.form
+        )
         .then(({ data }) => {
           if (data.code == 200) {
             // 判断是否点赞
             if (
-              this.$store.state.articleLikeSet.indexOf(this.article.articleId) != -1
+              this.$store.state.articleLikeSet.indexOf(
+                this.article.articleId
+              ) != -1
             ) {
               this.$set(this.article, "likeCount", this.article.likeCount - 1);
             } else {
@@ -459,7 +471,7 @@ export default {
     articleCover() {
       return (
         "background: url(" +
-        this.article.articleCover +
+        this.article.articleCoverUrl +
         ") center center / cover no-repeat"
       );
     },

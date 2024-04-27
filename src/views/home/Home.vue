@@ -64,7 +64,7 @@
                 class="on-hover"
                 width="100%"
                 height="100%"
-                :src="item.articleCover"
+                :src="item.articleCoverUrl"
               />
             </router-link>
           </div>

@@ -41,7 +41,7 @@ export default {
   methods: {
     getAboutContent() {
       const that = this;
-      this.axios.get("/api/about").then(({ data }) => {
+      this.axios.get("/api/blog/blogInfo/about").then(({ data }) => {
         this.markdownToHtml(data);
         this.$nextTick(() => {
           // 添加代码复制功能
@@ -120,7 +120,7 @@ export default {
   },
   computed: {
     avatar() {
-      return this.$store.state.blogInfo.websiteConfig.websiteAvatar;
+      return this.$store.state.blogInfo.websiteConfig.websiteAvatarUrl;
     },
     cover() {
       var cover = "";

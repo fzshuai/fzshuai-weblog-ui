@@ -52,7 +52,7 @@
               绑定邮箱
             </v-btn>
           </div>
-          <v-btn @click="updataUserInfo" outlined class="mt-5">修改</v-btn>
+          <v-btn @click="updateUserInfo" outlined class="mt-5">修改</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -66,6 +66,7 @@ export default {
   data: function() {
     return {
       userInfo: {
+        userId: this.$store.state.userId,
         nickname: this.$store.state.nickname,
         intro: this.$store.state.intro,
         webSite: this.$store.state.webSite,
@@ -74,18 +75,20 @@ export default {
     };
   },
   methods: {
-    updataUserInfo() {
-      this.axios.put("/api/users/info", this.userInfo).then(({ data }) => {
-        if (data.flag) {
-          this.$store.commit("updateUserInfo", this.userInfo);
-          this.$toast({ type: "success", message: "修改成功" });
-        } else {
-          this.$toast({ type: "error", message: data.message });
-        }
-      });
+    updateUserInfo() {
+      this.axios
+        .put("/api/system/user/info", this.userInfo)
+        .then(({ data }) => {
+          if (data.code == 200) {
+            this.$store.commit("updateUserInfo", this.userInfo);
+            this.$toast({ type: "success", message: "修改成功" });
+          } else {
+            this.$toast({ type: "error", message: data.message });
+          }
+        });
     },
     uploadAvatar(data) {
-      if (data.flag) {
+      if (data.code == 200) {
         this.$store.commit("updateAvatar", data.data);
         this.$toast({ type: "success", message: "上传成功" });
       } else {

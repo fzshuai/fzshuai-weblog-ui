@@ -93,6 +93,10 @@ const routes = [
     meta: {
       title: "个人中心"
     }
+  },
+  {
+    path: "/blog-social-callback",
+    component: () => import("../components/SocialLogin.vue")
   }
 ];
 

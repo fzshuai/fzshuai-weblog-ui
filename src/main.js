@@ -8,7 +8,6 @@ import "./assets/css/index.css";
 import "./assets/css/iconfont.css";
 import "./assets/css/markdown.css";
 import "./assets/css/vue-social-share/client.css";
-import config from "./assets/js/config";
 import Share from "vue-social-share";
 import dayjs from "dayjs";
 import { vueBaberrage } from "vue-baberrage";
@@ -22,7 +21,6 @@ import Toast from "./components/toast/index";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
-Vue.prototype.config = config;
 Vue.config.productionTip = false;
 Vue.use(animated);
 Vue.use(Share);

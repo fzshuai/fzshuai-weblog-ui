@@ -39,6 +39,24 @@
           <span @click="openRegister">立即注册</span>
           <span @click="openForget" class="float-right">忘记密码?</span>
         </div>
+        <div v-if="socialLoginList.length > 0">
+          <div class="social-login-wrapper mt-7">
+            <!-- gitee登录 -->
+            <a
+              v-if="showLogin('gitee')"
+              class="mr-3 iconfont icongitee-fill-round"
+              style="color:#e05244"
+              @click="doSocialLogin('gitee')"
+            />
+            <!-- qq登录 -->
+            <a
+              v-if="showLogin('qq')"
+              class="iconfont iconqq"
+              style="color:#00AAEE"
+              @click="doSocialLogin('qq')"
+            />
+          </div>
+        </div>
       </div>
     </v-card>
   </v-dialog>
@@ -68,6 +86,15 @@ export default {
         return false;
       }
       return true;
+    },
+    socialLoginList() {
+      console.log(this.$store.state.blogInfo.websiteConfig.socialLoginList);
+      return this.$store.state.blogInfo.websiteConfig.socialLoginList;
+    },
+    showLogin() {
+      return function(type) {
+        return this.socialLoginList.indexOf(type) != -1;
+      };
     }
   },
   methods: {
@@ -104,7 +131,26 @@ export default {
           that.$toast({ type: "error", message: data.msg });
         }
       });
+    },
+    doSocialLogin(source) {
+      this.axios.get("/api/system/social/binding/" + source).then(res => {
+        if (res.data.code == 200) {
+          window.location.href = res.data.msg;
+        } else {
+          this.$toast({ type: "error", message: res.data.message });
+        }
+      });
     }
   }
 };
 </script>
+
+<style scoped>
+.social-login-wrapper {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+.social-login-wrapper a {
+  text-decoration: none;
+}
+</style>

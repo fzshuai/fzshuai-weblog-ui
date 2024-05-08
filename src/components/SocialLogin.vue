@@ -7,9 +7,9 @@ export default {
   data() {
     return {
       loading: true,
+      source: this.$route.query.source,
       code: this.$route.query.code,
-      state: this.$route.query.state,
-      source: this.$route.query.source
+      state: this.$route.query.state
     };
   },
   mounted() {
@@ -17,20 +17,18 @@ export default {
   },
   methods: {
     socialLogin() {
+      const data = {
+        source: this.source,
+        code: this.code,
+        state: this.state
+      };
       this.axios
-        .get("/api/system/social/blog-social-callback/" + this.source, {
-          params: {
-            source: this.source,
-            code: this.code,
-            state: this.state
-          }
-        })
+        .post("/api/system/social/blog/callback/", data)
         .then(res => {
           if (res.data.code != 200) {
             this.$toast({ type: "error", message: res.data.message });
             return;
           }
-          console.log(res.data.data);
           this.loading = false;
           this.username = "";
           this.password = "";

@@ -101,9 +101,7 @@
               <v-avatar size="36" class="user-avatar">
                 <img :src="this.$store.state.avatar" />
               </v-avatar>
-              <div class="user-nickname">
-                {{ this.$store.state.nickname }}
-              </div>
+              <i class="el-icon-caret-bottom" />
             </div>
             <ul class="menus-submenu">
               <li>
@@ -270,12 +268,6 @@ ul {
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.5s;
-}
-.user-nickname {
-  display: flex;
-  font-size: 15px;
-  justify-content: center;
-  align-items: center;
 }
 .menus-item:hover .menus-submenu {
   display: block;

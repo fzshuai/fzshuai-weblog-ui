@@ -95,7 +95,7 @@ const routes = [
     }
   },
   {
-    path: "/blog-social-callback",
+    path: "/social/callback",
     component: () => import("../components/SocialLogin.vue")
   }
 ];

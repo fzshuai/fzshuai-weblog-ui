@@ -4,7 +4,7 @@
       class="emoji-item"
       v-for="(value, key, index) of emojiList"
       :key="index"
-      @click="addEmoji(key)"
+      @click="addEmoji(key, value)"
     >
       <div class="emoji" width="24" height="24">
         {{ value }}
@@ -27,8 +27,8 @@ export default {
     };
   },
   methods: {
-    addEmoji(key) {
-      this.$emit("addEmoji", key);
+    addEmoji(key, value) {
+      this.$emit("addEmoji", value);
     }
   }
 };

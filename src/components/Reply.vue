@@ -55,7 +55,6 @@ export default {
       this.$refs.reply.style.display = "none";
     },
     insertReply() {
-      console.log("insertReply");
       // 判断登录
       if (!this.$store.state.userId) {
         this.$store.state.loginFlag = true;

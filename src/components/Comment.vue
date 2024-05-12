@@ -202,6 +202,7 @@ import Reply from "./Reply";
 import Paging from "./Paging";
 import Emoji from "./Emoji";
 import EmojiList from "../assets/js/emoji";
+
 export default {
   components: {
     Reply,
@@ -228,7 +229,6 @@ export default {
   },
   methods: {
     replyComment(index, item) {
-      console.log("执行了replyComment");
       this.$refs.reply.forEach(item => {
         item.$el.style.display = "none";
       });
@@ -245,7 +245,6 @@ export default {
       this.commentContent += key;
     },
     checkReplies(index, item) {
-      console.log("执行了reloadReply");
       this.axios
         .get("/api/blog/article/comments/" + item.commentId + "/replies", {
           params: { current: 1, size: 5 }
@@ -260,7 +259,6 @@ export default {
         });
     },
     changeReplyCurrent(current, index, commentId) {
-      console.log("changeReplyCurrent");
       // 查看下一页回复
       this.axios
         .get("/api/blog/comments/" + commentId + "/replies", {
@@ -314,12 +312,8 @@ export default {
       }
       // 解析表情
       var reg = /\[.+?\]/g;
-      this.commentContent = this.commentContent.replace(reg, function(str) {
-        return (
-          "<img src= '" +
-          EmojiList[str] +
-          "' width='24'height='24' style='margin: 0 1px;vertical-align: text-bottom'/>"
-        );
+      this.commentContent = this.commentContent.replace(reg, function() {
+        return EmojiList;
       });
       // 发送请求
       const path = this.$route.path;
@@ -384,7 +378,6 @@ export default {
         });
     },
     reloadReply(index) {
-      console.log("reloadReply");
       this.axios
         .get(
           "/api/blog/comment/comments/" +
@@ -527,6 +520,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .load-wrapper button {
   background-color: #49b1f5;
   color: #fff;

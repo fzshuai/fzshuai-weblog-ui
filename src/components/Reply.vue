@@ -55,7 +55,8 @@ export default {
       this.$refs.reply.style.display = "none";
     },
     insertReply() {
-      //判断登录
+      console.log("insertReply");
+      // 判断登录
       if (!this.$store.state.userId) {
         this.$store.state.loginFlag = true;
         return false;
@@ -64,7 +65,7 @@ export default {
         this.$toast({ type: "error", message: "回复不能为空" });
         return false;
       }
-      //解析表情
+      // 解析表情
       var reg = /\[.+?\]/g;
       this.commentContent = this.commentContent.replace(reg, function(str) {
         return (
@@ -79,7 +80,8 @@ export default {
         type: this.type,
         replyUserId: this.replyUserId,
         parentId: this.parentId,
-        commentContent: this.commentContent
+        commentContent: this.commentContent,
+        userId: this.$store.state.userId
       };
       switch (this.type) {
         case 1:
@@ -90,14 +92,16 @@ export default {
           break;
       }
       this.commentContent = "";
-      this.axios.post("/api/comments", comment).then(({ data }) => {
-        if (data.flag) {
-          this.$emit("reloadReply", this.index);
-          this.$toast({ type: "success", message: "回复成功" });
-        } else {
-          this.$toast({ type: "error", message: data.message });
-        }
-      });
+      this.axios
+        .post("/api/blog/comment/comments", comment)
+        .then(({ data }) => {
+          if (data.code == 200) {
+            this.$emit("reloadReply", this.index);
+            this.$toast({ type: "success", message: "回复成功" });
+          } else {
+            this.$toast({ type: "error", message: data.message });
+          }
+        });
     },
     addEmoji(text) {
       this.commentContent += text;

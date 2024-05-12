@@ -1,115 +1,75 @@
 export default {
-  "[微笑]": "https://static.talkxj.com/emoji/smile.jpg",
+  "[微笑]": "🙂",
 
-  "[笑]": " https://static.talkxj.com/emoji/dx.jpg",
+  "[笑]": "😃",
 
-  "[呲牙]": "https://static.talkxj.com/emoji/cy.jpg",
+  "[大笑]": "😄 ",
 
-  "[OK]": "https://static.talkxj.com/emoji/ok.jpg",
+  "[嘻嘻]": "😁",
 
-  "[星星眼]": "https://static.talkxj.com/emoji/xxy.jpg",
+  "[斜眼笑]": "😆",
 
-  "[哦呼]": "https://static.talkxj.com/emoji/oh.jpg",
+  "[苦笑]": "😅",
 
-  "[嫌弃]": "https://static.talkxj.com/emoji/xq.jpg",
+  "[笑出泪]": "🤣",
 
-  "[喜欢]": "https://static.talkxj.com/emoji/xh.jpg",
+  "[眨眼]": "😉",
 
-  "[酸了]": "https://static.talkxj.com/emoji/sl.jpg",
+  "[喜笑颜开]": "🥰",
 
-  "[大哭]": "https://static.talkxj.com/emoji/dq.jpg?",
+  "[花痴]": "😍",
 
-  "[害羞]": "https://static.talkxj.com/emoji/hx.jpg",
+  "[崇拜]": "🤩",
 
-  "[无语]": "https://static.talkxj.com/emoji/wy.jpg",
+  "[飞吻]": "😘",
 
-  "[疑惑]": "https://static.talkxj.com/emoji/yh.jpg",
+  "[亲亲]": "😗",
 
-  "[调皮]": "https://static.talkxj.com/emoji/tiaopi.jpg",
+  "[羞涩]": "😚",
 
-  "[笑哭]": "https://static.talkxj.com/emoji/xiaoku.jpg",
+  "[好吃]": "😋",
 
-  "[奸笑]": "https://static.talkxj.com/emoji/jianxiao.jpg",
+  "[吐舌]": "😛",
 
-  "[偷笑]": "https://static.talkxj.com/emoji/touxiao.jpg",
+  "[滑稽]": "🤪",
 
-  "[大笑]": "https://static.talkxj.com/emoji/daxiao.jpg",
+  "[挑眉]": "🤨",
 
-  "[阴险]": "https://static.talkxj.com/emoji/yinxian.jpg",
+  "[不高兴]": "😒",
 
-  "[捂脸]": "https://static.talkxj.com/emoji/wulian.jpg",
+  "[流口水]": "🤤",
 
-  "[呆]": "https://static.talkxj.com/emoji/dai.jpg",
+  "[睡着]": "😴",
 
-  "[抠鼻]": "https://static.talkxj.com/emoji/koubi.jpg",
+  "[感冒]": "😷",
 
-  "[惊喜]": "https://static.talkxj.com/emoji/jingxi.jpg",
+  "[受伤]": "🤕",
 
-  "[惊讶]": "https://static.talkxj.com/emoji/jingya.jpg",
+  "[冷脸]": "🥶",
 
-  "[捂脸哭]": "https://static.talkxj.com/emoji/wulianku.jpg",
+  "[头晕]": "😵",
 
-  "[妙啊]": "https://static.talkxj.com/emoji/miaoa.jpg",
+  "[墨镜笑]": "😎",
 
-  "[狗头]": "https://static.talkxj.com/emoji/goutou.jpg",
+  "[震惊]": "😲",
 
-  "[滑稽]": "https://static.talkxj.com/emoji/huaji.jpg",
+  "[累]": "😫",
 
-  "[吃瓜]": "https://static.talkxj.com/emoji/chigua.jpg",
+  "[生气]": "😡",
 
-  "[打call]": "https://static.talkxj.com/emoji/dacall.jpg",
+  "[小丑]": "🤡",
 
-  "[点赞]": "https://static.talkxj.com/emoji/dianzan.jpg",
+  "[机器人]": "🤖",
 
-  "[鼓掌]": "https://static.talkxj.com/emoji/guzhang.jpg",
+  "[爱心]": "💗",
 
-  "[尴尬]": "https://static.talkxj.com/emoji/ganga.jpg",
+  "[中箭心]": "💘",
 
-  "[冷]": "https://static.talkxj.com/emoji/leng.jpg",
+  "[情书]": "💌",
 
-  "[灵魂出窍]": "https://static.talkxj.com/emoji/linghunchuqiao.jpg",
+  "[一百分]": "💯",
 
-  "[委屈]": "https://static.talkxj.com/emoji/weiqu.jpg",
+  "[爆炸]": "💥",
 
-  "[傲娇]": "https://static.talkxj.com/emoji/aojiao.jpg",
-
-  "[疼]": "https://static.talkxj.com/emoji/teng.jpg",
-
-  "[吓]": "https://static.talkxj.com/emoji/xia.jpg?",
-
-  "[生病]": "https://static.talkxj.com/emoji/shengbing.jpg",
-
-  "[吐]": "https://static.talkxj.com/emoji/tu.jpg",
-
-  "[嘘声]": "https://static.talkxj.com/emoji/xusheng.jpg",
-
-  "[捂眼]": "https://static.talkxj.com/emoji/wuyan.jpg",
-
-  "[思考]": "https://static.talkxj.com/emoji/sikao.jpg",
-
-  "[再见]": "https://static.talkxj.com/emoji/zaijian.jpg",
-
-  "[翻白眼]": "https://static.talkxj.com/emoji/fanbaiyan.jpg",
-
-  "[哈欠]": "https://static.talkxj.com/emoji/haqian.jpg",
-
-  "[奋斗]": "https://static.talkxj.com/emoji/fengdou.jpg",
-
-  "[墨镜]": "https://static.talkxj.com/emoji/mojing.jpg",
-
-  "[撇嘴]": "https://static.talkxj.com/emoji/piezui.jpg",
-
-  "[难过]": "https://static.talkxj.com/emoji/nanguo.jpg",
-
-  "[抓狂]": "https://static.talkxj.com/emoji/zhuakuang.jpg",
-
-  "[生气]": "https://static.talkxj.com/emoji/shengqi.jpg",
-
-  "[爱心]": "https://static.talkxj.com/emoji/aixin.jpg",
-
-  "[胜利]": "https://static.talkxj.com/emoji/shengli.jpg",
-
-  "[保佑]": "https://static.talkxj.com/emoji/baoyou.jpg",
-
-  "[支持]": "https://static.talkxj.com/emoji/zhichi.jpg"
+  "[汗滴]": "💦"
 };

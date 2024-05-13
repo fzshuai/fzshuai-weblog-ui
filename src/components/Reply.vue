@@ -1,7 +1,7 @@
 <template>
-  <div class="reply-input-wrapper" style="display: none" ref="reply">
+  <div class="reply-input-wrapper" ref="reply">
     <textarea
-      class="comment-textarea"
+      class="reply-textarea"
       :placeholder="'回复 @' + nickname + '：'"
       auto-grow
       dense
@@ -111,9 +111,20 @@ export default {
 
 <style scoped>
 .reply-input-wrapper {
+  display: none;
   border: 1px solid #90939950;
   border-radius: 4px;
   padding: 10px;
   margin: 0 0 10px;
+}
+.reply-textarea {
+  font-size: 0.875rem;
+  color: #555 !important;
+  outline: none;
+  padding: 10px 5px;
+  min-height: 122px;
+  resize: none;
+  width: 100%;
+  border-radius: 4px;
 }
 </style>

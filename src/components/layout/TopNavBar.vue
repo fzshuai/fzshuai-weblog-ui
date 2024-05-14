@@ -91,7 +91,7 @@
         <div class="menus-item">
           <a
             class="menu-btn"
-            v-if="!this.$store.state.avatar && !this.$store.state.nickname"
+            v-if="!this.$store.state.avatar && !this.$store.state.userId"
             @click="openLogin"
           >
             <i class="iconfont icondenglu" /> 登录

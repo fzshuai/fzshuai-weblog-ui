@@ -91,7 +91,7 @@ export default {
   methods: {
     getTalkById() {
       this.axios
-        .get("/api/talks/" + this.$route.params.talkId)
+        .get("/api/blog/talk/" + this.$route.params.talkId)
         .then(({ data }) => {
           this.talkInfo = data.data;
           this.previewList = this.talkInfo.imgList;
@@ -113,17 +113,19 @@ export default {
         return false;
       }
       // 发送请求
-      this.axios.post("/api/talks/" + talk.id + "/like").then(({ data }) => {
-        if (data.flag) {
-          // 判断是否点赞
-          if (this.$store.state.talkLikeSet.indexOf(talk.talkId) != -1) {
-            this.$set(talk, "likeCount", talk.likeCount - 1);
-          } else {
-            this.$set(talk, "likeCount", talk.likeCount + 1);
+      this.axios
+        .post("/api/blog/talk/talks/" + talk.talkId + "/like")
+        .then(({ data }) => {
+          if (data.code == 200) {
+            // 判断是否点赞
+            if (this.$store.state.talkLikeSet.indexOf(talk.talkId) != -1) {
+              this.$set(talk, "likeCount", talk.likeCount - 1);
+            } else {
+              this.$set(talk, "likeCount", talk.likeCount + 1);
+            }
+            this.$store.commit("talkLike", talk.talkId);
           }
-          this.$store.commit("talkLike", talk.talkId);
-        }
-      });
+        });
     }
   },
   computed: {

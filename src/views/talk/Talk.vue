@@ -102,7 +102,7 @@ export default {
   methods: {
     listTalks() {
       this.axios
-        .get("/api/talks", {
+        .get("/api/blog/talk/talks", {
           params: {
             current: this.current,
             size: this.size
@@ -136,17 +136,19 @@ export default {
         return false;
       }
       // 发送请求
-      this.axios.post("/api/talks/" + talk.talkId + "/like").then(({ data }) => {
-        if (data.flag) {
-          // 判断是否点赞
-          if (this.$store.state.talkLikeSet.indexOf(talk.talkId) != -1) {
-            this.$set(talk, "likeCount", talk.likeCount - 1);
-          } else {
-            this.$set(talk, "likeCount", talk.likeCount + 1);
+      this.axios
+        .post("/api/blog/talk/talks/" + talk.talkId + "/like")
+        .then(({ data }) => {
+          if (data.code == 200) {
+            // 判断是否点赞
+            if (this.$store.state.talkLikeSet.indexOf(talk.talkId) != -1) {
+              this.$set(talk, "likeCount", talk.likeCount - 1);
+            } else {
+              this.$set(talk, "likeCount", talk.likeCount + 1);
+            }
+            this.$store.commit("talkLike", talk.talkId);
           }
-          this.$store.commit("talkLike", talk.talkId);
-        }
-      });
+        });
     }
   },
   computed: {

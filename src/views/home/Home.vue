@@ -171,9 +171,9 @@
                 class="mr-5 iconfont iconqq"
                 target="_blank"
                 :href="
-                  'http://wpa.qq.com/msgrd?v=3&uin=' +
+                  'tencent://Message/?Uin=' +
                     blogInfo.websiteConfig.qq +
-                    '&site=qq&menu=yes'
+                    '&amp;websiteName=blog.fzshuai.top=&amp;Menu=yes'
                 "
               />
               <a

@@ -45,7 +45,7 @@ export default {
       var cover = "";
       this.$store.state.blogInfo.pageList.forEach(item => {
         if (item.pageLabel == "tag") {
-          cover = item.pageCover;
+          cover = item.pageCoverUrl;
         }
       });
       return "background: url(" + cover + ") center center / cover no-repeat";

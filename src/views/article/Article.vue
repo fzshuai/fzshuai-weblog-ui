@@ -388,7 +388,7 @@ export default {
             } else {
               this.$set(this.article, "likeCount", this.article.likeCount + 1);
             }
-            this.$store.commit("articleLike", this.article.article);
+            this.$store.commit("articleLike", this.article.articleId);
           }
         });
     },

@@ -17,7 +17,7 @@
           <avatar-cropper
             @uploaded="uploadAvatar"
             trigger="#pick-avatar"
-            upload-url="/api/users/avatar"
+            upload-url="/api/system/user/profile/userAvatar"
           />
         </v-col>
         <v-col md="7" cols="12">
@@ -110,7 +110,7 @@ export default {
       var cover = "";
       this.$store.state.blogInfo.pageList.forEach(item => {
         if (item.pageLabel == "user") {
-          cover = item.pageCover;
+          cover = item.pageCoverUrl;
         }
       });
       return "background: url(" + cover + ") center center / cover no-repeat";

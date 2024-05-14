@@ -29,7 +29,7 @@
     "dayjs": "^1.11.7",
     "easy-typer-js": "^2.1.0",
     "highlight.js": "10.7.3",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.4",
     "markdown-it": "12.3.2",
     "nprogress": "0.2.0",
     "recorderx": "2.0.2",
@@ -61,7 +61,7 @@
     "prettier": "1.19.1",
     "sass": "1.32.13",
     "sass-loader": "10.2.0",
-    "vue-cli-plugin-vuetify": "2.4.7",
+    "vue-cli-plugin-vuetify": "^2.5.8",
     "vuetify-loader": "1.7.3"
   },
   "engines": {

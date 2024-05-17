@@ -60,9 +60,9 @@ export default {
         this.$toast({ type: "error", message: "留言不能为空" });
         return false;
       }
-      const userAvatar = this.$store.state.avatar
-        ? this.$store.state.avatar
-        : this.$store.state.blogInfo.websiteConfig.touristAvatar;
+      const userAvatar = this.$store.state.avatarUrl
+        ? this.$store.state.avatarUrl
+        : this.$store.state.blogInfo.websiteConfig.touristAvatarUrl;
       const userNickname = this.$store.state.nickname
         ? this.$store.state.nickname
         : "游客";
@@ -74,11 +74,11 @@ export default {
       };
       this.barrageList.push(message);
       this.messageContent = "";
-      this.axios.post("/api/messages", message);
+      this.axios.post("/api/blog/message/messages", message);
     },
     listMessage() {
-      this.axios.get("/api/messages").then(({ data }) => {
-        if (data.flag) {
+      this.axios.get("/api/blog/message/messages").then(({ data }) => {
+        if (data.code == 200) {
           this.barrageList = data.data;
         }
       });

@@ -67,8 +67,9 @@ const routes = [
     component: resolve => require(["../views/article/ArticleList.vue"], resolve)
   },
   {
-    path: "/links",
-    component: resolve => require(["../views/link/Link.vue"], resolve),
+    path: "/friendLinks",
+    component: resolve =>
+      require(["../views/friendLink/FriendLink.vue"], resolve),
     meta: {
       title: "友链列表"
     }

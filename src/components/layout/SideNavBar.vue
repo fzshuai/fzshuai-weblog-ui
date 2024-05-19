@@ -74,7 +74,7 @@
         </router-link>
       </div>
       <div class="menus-item">
-        <router-link to="/links">
+        <router-link to="/friendLinks">
           <i class="iconfont iconlianjie" /> 友链
         </router-link>
       </div>

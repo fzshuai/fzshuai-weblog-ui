@@ -64,7 +64,7 @@ export default {
   computed: {
     cover() {
       var cover = "";
-      this.$store.state.blogInfo.pageList.forEach(item => {
+      this.$store.state.blogInfo.blogPageList.forEach(item => {
         if (item.pageLabel == "archive") {
           cover = item.pageCoverUrl;
         }

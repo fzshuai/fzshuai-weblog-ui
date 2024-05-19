@@ -108,7 +108,7 @@ export default {
     },
     cover() {
       var cover = "";
-      this.$store.state.blogInfo.pageList.forEach(item => {
+      this.$store.state.blogInfo.blogPageList.forEach(item => {
         if (item.pageLabel == "user") {
           cover = item.pageCoverUrl;
         }

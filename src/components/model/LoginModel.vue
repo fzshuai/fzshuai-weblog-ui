@@ -53,7 +53,7 @@
               v-if="showLogin('qq')"
               class="iconfont iconqq"
               style="color:#00AAEE"
-              @click="doSocialLogin('qq')"
+              @click="doSocialLogin('QQ')"
             />
           </div>
         </div>

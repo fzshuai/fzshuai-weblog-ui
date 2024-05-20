@@ -2,7 +2,7 @@
   <div>
     <!-- banner -->
     <div class="banner" :style="cover">
-      <h1 class="banner-title">友情链接</h1>
+      <h1 class="banner-title">友人链接</h1>
     </div>
     <!-- 链接列表 -->
     <v-card class="blog-container">
@@ -15,7 +15,7 @@
           md="4"
           cols="12"
           v-for="item of friendLinkList"
-          :key="item.id"
+          :key="item.friendLinkId"
         >
           <a :href="item.linkAddress" target="_blank">
             <v-avatar size="65" class="link-avatar">
@@ -35,7 +35,7 @@
       <blockquote>
         <div>名称：{{ blogInfo.websiteConfig.websiteName }}</div>
         <div>简介：{{ blogInfo.websiteConfig.websiteIntro }}</div>
-        <div>头像：{{ blogInfo.websiteConfig.websiteAvatar }}</div>
+        <div>头像：{{ blogInfo.websiteConfig.websiteAvatarUrl }}</div>
       </blockquote>
       <div class="mt-5 mb-5">
         需要交换友链的可在下方留言💖
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     listFriendLink() {
-      this.axios.get("/api/links").then(({ data }) => {
+      this.axios.get("/api/blog/friendLink/links").then(({ data }) => {
         this.friendLinkList = data.data;
       });
     }

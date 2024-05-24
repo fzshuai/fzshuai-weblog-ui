@@ -10,7 +10,7 @@
     <!-- 博主介绍 -->
     <div class="blogger-info">
       <v-avatar size="110" style="margin-bottom:0.5rem">
-        <img :src="this.$store.state.blogInfo.websiteConfig.websiteAvatar" />
+        <img :src="this.$store.state.blogInfo.websiteConfig.websiteAvatarUrl" />
       </v-avatar>
     </div>
     <!-- 博客信息 -->
@@ -88,7 +88,10 @@
           <i class="iconfont iconpinglunzu" /> 留言
         </router-link>
       </div>
-      <div class="menus-item" v-if="!this.$store.state.avatar">
+      <div
+        class="menus-item"
+        v-if="!this.$store.state.avatar && !this.$store.state.userId"
+      >
         <a @click="openLogin"><i class="iconfont icondenglu" /> 登录 </a>
       </div>
       <div v-else>
